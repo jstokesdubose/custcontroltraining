@@ -2,10 +2,7 @@
 
 This training module addresses building custom controls for Business Central using two approaches: 
 
-1. Firstly, to build the control and javascript apart from AL;
-1. Secondly, to migrate the javascript and more to a BC instance as an extension
-
-JavaScript widgets and code must be used but teaching either javascript or the myriad controls available in the web exceeds scope and time for superficial training, like this. 
+Since Business Central is used, this tutorial leverages a BC container inside of Docker
 
 ## <a name="docker">Docker</a>
 Docker container manager is used to host a Business Central container for AL extension development. The script I use will be shown in the appendix of this document.
@@ -18,3 +15,5 @@ A Git repository will be used (Tigunia GitHub account), and installing Waldo's A
 ## <a name="vsc">Visual Studio Code</a>
 VS Code is the only IDE used in this training.
 
+In addition to the AL-code add-ins, one more is recommended: 
+[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), with it's familiar *GoLive* button in the bottom of the VS Code window.

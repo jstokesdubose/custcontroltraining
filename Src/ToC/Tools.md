@@ -15,6 +15,11 @@ Go into the VS Code extensions and search for *Live Server*. Assure it is by Rit
 
 AL developers should already be familiar with the *AL Extension Pack* by Waldo.
 
+<dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
+<dd>Links to these add-ins can be found <a href="./References.md#code">here</a>.</dd>
+</dl>
+
 ## <a name="javascript">JavaScript Development</a>
 
 JavaScript may be unfamiliar to many AL developers. While this is not a tutorial on JS, we will cover some concepts such as the ability to download our libraries on the fly. Two of those that we'll need are jQuery and our single widget, DataTables.

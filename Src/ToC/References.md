@@ -28,7 +28,7 @@
 <dd>Introduction and indexed samples.</dd>
 </dl>
 
-# <a name="widgets">Widgets</a>
+## <a name="widgets">Widgets</a>
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="https://jqueryui.com/">jQuery UI</a></dt>
@@ -62,7 +62,7 @@
 <dd>Bootstrap 4, responsive styling library tutorial</dd>
 </dl>
 
-## jQuery
+## <a name="jQ">jQuery</a>
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="https://jquery.com/">jQuery</a></dt>
 <dd>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. </dd>
@@ -71,4 +71,15 @@
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="https://learn.jquery.com/">Learn jQuery</a></dt>
 <dd>Learn jQuery from jQuery.</dd>
+</dl>
+
+## <a name="code">VS Code Add-ins</a>
+<dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">Live Server</a></dt>
+<dd>Launch a development local Server with live reload feature for static & dynamic pages.</dd>
+</dl>
+
+<dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="https://marketplace.visualstudio.com/items?itemName=waldo.al-extension-pack">Waldo's AL Extension Pack</a></dt>
+<dd>Everything you need for AL development (Microsoft Dynamics 365 Business Central)</dd>
 </dl>

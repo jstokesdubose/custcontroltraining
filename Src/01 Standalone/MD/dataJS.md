@@ -6,7 +6,7 @@ Dynamic data from BC will replace this (with some additional logic and functiona
 
 The whole file simply defines one variable: **customers**.
 
-Customers, though, is an array of arrays. Each customer is an array. **customers** has two array members: customer 10000 and 20000.
+Customers, though, is a JSON array of arrays. Each customer is an array. **customers** has two array members: customer 10000 and 20000.
 
 ```javascript
 var customers = [
@@ -27,4 +27,5 @@ var customers = [
 ]
 ````
 
-The knowledge that **customers** is an array of arrays will help when migrating to Business Central.
+The knowledge that **customers** is a JSON array of arrays will help when migrating to Business Central.
+
