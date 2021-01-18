@@ -49,9 +49,12 @@ These are simply placeholders for what will come.
 
 ### <a name="style">custStyle.css</a>
 
-Showing the starting point of this file is difficult. It's **empty**. We'll fill the styles as we go, and will become an important file.
+Showing the starting point of this file might confuse some because it's just a couple of stubs for styles.We'll fill the styles in our first effort in making a standalone html file. The `custStyle.css` and will become an important file.
 
-We will only use on css file in this example. 
+<dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
+<dd>Our chosen widget also uses two other <code>css</code> files, but they're downloaded from their respective CDNs.</dd>
+</dl>
 
 ### <a name="data">data.js</a>
 
@@ -63,3 +66,9 @@ We will use more than one javascript file before we complete the session.
 <div style="font-style: italic;text-size: 10px; margin-left:40px; margin-right:40px">I do not and never have considered HTML a language. It is a textual markdown, as are all other markdown formats.<br>
 Thank you</div>
 
+This tutorial begins with an `HTML file` that has only the rudimentary `HTML elements` in it. They include:
+
+* `<html>`
+* `<head>`<br>
+and
+* `<body>`

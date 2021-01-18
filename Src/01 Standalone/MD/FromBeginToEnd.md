@@ -8,6 +8,8 @@ Add three files:
 and
 * data.js
 
+## CustomerList.html
+
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
 <dd>These can be copied exactly from the "Begin" folder in the Git repo.</dd>
@@ -46,14 +48,14 @@ Fill in the scripts and links in the <head> section with the following:
     <script  src="data.js"></script>
 ````
 
-The *\<title>* is optional.
+The `<title>` is optional.
 
 Links in an HTML header point the browser to external files. As shown, these can exist locally or on the internet.
 
 Scripts instruct the browser to copy and include the contents of the files listed as part of the page. 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="">Proof:</a></dt>
-<dd>You can see this by opening a browser (Edge, in this case), pressing F12 >> Sources >> Page.  
+<dd>You can see this by opening a browser (Edge, in this case), pressing <i>F12 >> Sources >> Page</i>.
 
 </dd>
 </dl>
@@ -104,7 +106,7 @@ The last thing to add to the HTML file is the script that runs the DataTable cod
 </script>
 ````
 
-Briefly translated, this script is called <u>after</u> the whole of the page, including scripts downloaded from CDN, has downloaded and been displayed or run. 
+Briefly translated, this script is called <u>after</u> the whole of the page, including scripts downloaded from CDN, has finished running. 
 
 The `$(document)` command actually comes from jQuery, and is shorthand for, "return the element that has the id of `customerTable`."
 
@@ -118,3 +120,114 @@ Within the anonymous function, only one parameter is applied to the `DataTable` 
 What may have been missed is that the `JSON Array of Arrays` was assigned to a variable of `customers`.
 
 The parameter understands that some kind of JSON object will be referenced. If the variable is not a JSON object, the page will not display any data.</dd></dl>
+
+## custStyle.css
+
+The starting file only contains some "stubs" for a table and a heading.
+
+````css
+th {
+}
+
+td {
+}
+tr:nth-child(even) {
+}
+
+table, th, td {
+}
+````
+
+The rest of the css file should be filled with the following. This should be copied over the original contents.
+
+````css
+th {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14pt;
+    background-color: lightcyan;
+}
+
+td {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+}
+tr:nth-child(even) {
+    background-color: lightgreen;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+ul.pagination {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 12pt;
+	text-align: left;
+	justify-content: flex;
+	list-style-type: none;
+}
+li {
+	float: left;
+}
+a.page-link {
+	padding-right: 15px;
+	padding-left: 15px;
+	display: block;
+	line-height: 40px;
+	text-decoration: none;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 18px;
+}
+#customerTable_filter {
+	text-align: left;
+	padding-top: 20px;
+}
+````
+
+## Data
+Lastly, we need to dummy up some data. The `data.js` file should contain the following.
+
+````javascript
+var customers = [
+    [
+        "10000",
+        "Bob Jones",
+        "123 Main St.",
+        "Springfield",
+        "Ohio"
+    ],
+    [
+        "20000",
+        "Phil Smith",
+        "100 Elm St.",
+        "Waco",
+        "Texas"
+    ]
+]
+````
+Notice how the order of the `JSON Array of Arrays' matches the order of the HTML table headers.
+
+````html
+<th width=10%>Customer No.</th>	------->  "10000",
+<th width=20%>Customer Name</th> -------> "Bob Jones",
+<th width=20%>Address</th> ------->	      "123 Main St.",
+<th width=20%>City</th> ------->          "Springfield",
+<th width=10%>State</th> ------->         "Ohio"
+````
+
+The `TableData` javascript widget obviously relies on order for its layout.
+
+## Product
+
+When we run the CustomerList.html (either from VS Code or from a brower) we see our standalone product.
+
+![data](../../media/01StandaloneEnd.png)
+
+### For Comparison
+
+If we remove the scripting that attaches the functionality and styles to the `customerTable` id, we see only this.
+
+![images](../../media/01StandaloneWOWidget.png)
+
+This shows everything the widget adds.

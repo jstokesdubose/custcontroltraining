@@ -1,6 +1,8 @@
 # Introduction to Custom Controls in AL
 
-This is another in the Tigunia series of, by, and for developers. This module will present a very simple design and implementation of **Custom Controls**, JavaScript widgets or logic embedded into BC pages.
+My name is Jeff Stokes Du Bose. It is my honor today to present a tutorial, from start to finish, on Business Central interoperability known as *custom controls.*. This entire presentation can be found on the Tigunia <a href="https://lms.tigunia.com">learning source</a>.
+
+This is another in the Tigunia tutorial series of, by, and for developers. This module will present a very simple design and implementation of **Custom Controls**, JavaScript widgets or logic embedded into BC pages.
 
 In NAV C/AL code, the more adventurous among us extended functionality and even integrated with other systems by writing custom DLLs in .NET and then calling those .NET modules from within the NAV code. As with these approaches, AL allows similar but different tools. 
 
@@ -10,7 +12,7 @@ The simple, four-part approach includes a brief introduction and demonstration o
 
 * Description and design of NAV and BC *interoperability*
 * An approach to build and prove the JavaScript addition <u>outside of BC</u>
-* Show the code changes, structural and logical, when migrating to a BC environment<br>
+* Showing the code changes, structural and logical, when migrating to a BC environment<br>
 and
 * Making the custom control interactive with BC
 
@@ -18,7 +20,7 @@ and
 
 NAV and BC share common business logic. The similarities end there. Remnants of the past remain, such as *objects* that aren't **objects**, and the textual layout of those objects reminds us of text exports of NAV, but the underlying architecture has changed.
 
-Interoperability changed with it. With a vengance.
+Interoperability changed with it.
 
 The reasons for the change are beyond anyone outside the Microsoft hive, but security and architecture certainly play a part.
 
@@ -27,7 +29,7 @@ In NAV using C/AL, add-ins written in .NET and added as DLLs in the *Add-ins* su
 
 ![Old-Style Architecture](../media/OnpremNavCode.png)
 
-These can exist without compromising any security or integrity for one reason: **all aspects of old-style NAV existed inside a secure and bounded domain.
+The interoperability of the old architecture existed without compromising any security or integrity for one reason: **all aspects of old-style NAV existed inside a secure and bounded domain**.
 
 Even open-ended DLLs could only corrupt those systems accessible to it. Other NAV implementations were safe by action of network security and localization.
 
@@ -42,13 +44,13 @@ In SaaS-based BC, the extended toolset runs from the client's browser, not from 
 ![CustomControl](../media/bccode.png)
 <br>
 
-As shown in this simple graph, the JavaScript custom control runs in the browser on the client's machine, not in the cloud. BC services *deliver* the JavaScript as part of the BC page, but the script runs <u>on the client's browser</u>.
+As shown in this graph, the JavaScript custom control runs in the browser on the client's machine, not in the cloud. BC services *deliver* the JavaScript as part of the BC page, but the script runs <u>on the client's browser</u>.
 
-We can show later that BC can send and receive data from the JavaScript logic running in the browser, but those actions must conform to only that already allowed from within AL. 
+We can show later that BC can send and receive data to and from the JavaScript logic running in the browser, but those actions remain inside BC, and are intercepted by AL. 
 
 ## <a name="control">Structure of a Custom Control</a>
 
-The following graph shows the simplified architecture of a BC custom control.<br><br>
+The following graph shows the theoretical architecture of a BC custom control.<br><br>
 
 ![Custom Control Architecture](../media/CustomControlArchitecture.png)
 
@@ -85,4 +87,4 @@ It is worth noting that JavaScript can also reach out to online services using A
 ## <a name="widget">Tutorial Widget</a>
 This demonstration uses a single, open-source JS widget, almost randomly selected for simplicity and availability. The widget, [DataTables](https://www.datatables.com), provides little value to a Dynamics Business Central envrionment, but provides enough training value &ndash; as well as simplicity for the tutorial &ndash; to be useful. 
 
-A requirement very important to this tutorial, anyone can obtain this widget without cost and through both downloads and content delivery network (CDN). More on that later.
+As a requirement very important to this tutorial, anyone can obtain this widget without cost and through both downloads and content delivery network (CDN). More on that later.
