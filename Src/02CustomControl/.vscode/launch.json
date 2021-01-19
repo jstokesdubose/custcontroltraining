@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Your own server",
+            "name": "TigTrainServer",
             "request": "launch",
             "type": "al",
-            //"environmentType": "OnPrem",
+            "environmentType": "OnPrem",
             "server": "http://TigTrain",
             "serverInstance": "BC",
             "authentication": "UserPassword",
