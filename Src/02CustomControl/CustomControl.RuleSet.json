@@ -1,0 +1,10 @@
+{
+    "name": "Custom Control Rule set",
+    "description": "Exceptions for Custom Controls",
+    "rules": [
+        {
+            "id": "DOC0101",
+            "action": "none"
+        }
+    ]
+}
