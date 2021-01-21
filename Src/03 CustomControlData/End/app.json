@@ -1,0 +1,28 @@
+{
+  "id": "5e06e6eb-f1b0-4218-8ed6-c91180e56be7",
+  "name": "03CustomControl",
+  "publisher": "Tigunia",
+  "version": "1.0.0.0",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [],
+  "screenshots": [],
+  "platform": "17.0.0.0",
+  "application": "17.0.0.0",
+  "target": "Cloud",
+  "supportedLocales": ["en-US"],
+  "idRanges": [
+    {
+      "from": 50100,
+      "to": 50149
+    }
+  ],
+  "contextSensitiveHelpUrl": "https://02CustomControl.com/help/",
+  "showMyCode": true,
+  "runtime": "6.0"
+}

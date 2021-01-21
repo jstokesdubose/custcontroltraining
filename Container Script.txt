@@ -1,0 +1,19 @@
+$artifactUrl = Get-BCArtifactUrl -country us -select Latest
+$licenseFile = 'C:\License\TigDev17.flf'
+$ContainerName = 'TigTrain' # should be the same as the ServerName in launch.json for the app
+$UserName = 'admin' 
+$Password = ConvertTo-SecureString '1Admin' -AsPlainText -Force
+$Credential = New-Object System.Management.Automation.PSCredential ($UserName, $Password)
+
+
+New-BCContainer `
+    -accept_eula `
+    -containerName $ContainerName `
+    -artifactUrl $artifactUrl `
+    -licenseFile $licenseFile `
+    -auth NavUserPassword `
+    -updateHosts `
+    -Credential $Credential `
+    -alwaysPull `
+    -includeTestToolkit 
+
