@@ -26,5 +26,5 @@ New-BCContainer `
 ````
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note</dt>
-<dd>Replace anything surrounded by angle brackets "<>" with valid content.</dd>
+<dd>Replace anything surrounded by angle brackets <code><></code> with valid content.</dd>
 </dl>

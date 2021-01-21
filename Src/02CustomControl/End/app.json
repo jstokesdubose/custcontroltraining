@@ -1,7 +1,7 @@
 {
   "id": "28173eb7-2707-47fd-9f50-ae52915dcbe0",
   "name": "02CustomControl",
-  "publisher": "Default publisher",
+  "publisher": "Tigunia",
   "version": "1.0.0.0",
   "brief": "",
   "description": "",
@@ -14,6 +14,8 @@
   "screenshots": [],
   "platform": "17.0.0.0",
   "application": "17.0.0.0",
+  "target": "Cloud",
+  "supportedLocales": ["en-US"],
   "idRanges": [
     {
       "from": 50100,
