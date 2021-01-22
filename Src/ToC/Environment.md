@@ -5,7 +5,7 @@ This training module addresses building custom controls for Business Central usi
  * Standalone HTML file with JS and CSS
  * The same logic and structure, but transferred into Business Central
 
-The resources to support our development inside Business Central represent a superset of the resources needed to work as a standalone HTML+JS+CSS IDE... with one addition.
+The resources to support our development inside Business Central represent a superset of the resources needed to work as a standalone HTML+JS+CSS IDE... with one addition. We'll cover that in a minute.
 
 Since Business Central is used, this tutorial leverages a BC container inside of Docker
 
@@ -17,20 +17,19 @@ Developers following test-first development always install the test libraries an
 Installing Docker, building a sandbox container, and connecting via VS Code is presumed but not covered in this tutorial.
 
 ## <a name="git">Git</a>
-A Git repository will be used (Tigunia GitHub account), and installing Waldo's AL extension suite will install the VSCode tools needed to work with Git within VSCode.
+A Git repository will be used (Tigunia DevOps), and installing Waldo's AL extension suite will install the VSCode tools needed to work with Git within VSCode.
 
 [Git Desktop](https://desktop.github.com/) is quite helpful in utilizing Git to greater potential andcan be downloaded from the provided link.
 
 ## <a name="vsc">Visual Studio Code</a>
 VS Code is the only IDE used in this training.
 
-
 Several Extensions for VS Code should be included in your installation.
 
 * Live Server (Ritwick Dey)
 * AL Extension Pack (waldo)
 
-In addition to the AL-code add-ins, one more is recommended: 
+In addition to Waldo's AL-code add-ins, one more is recommended: 
 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), with it's familiar *GoLive* button in the bottom of the VS Code window.
 
 The *Live Server* extension will allow the coder to see immediate changes to an HTML (with JavaScript) page. 
@@ -55,8 +54,10 @@ Both of these can be used without actually downloading the scripted code. We nee
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
-<dd>Using the CDN may increase a delay between the time a web page becomes visible and when the script has been downloaded and active. <i>Caching</i> improves this after the first download. Other techniques can show the page in full and <u>then</u> download any external content; making it appear as if no delay exists.</dd>
-</dl>
+<dd>Using the CDN may increase a delay between the time a web page becomes visible and when the script has been downloaded and active. <i>Caching</i> improves this after the first download. Other techniques can show the page in full and <u>then</u> download any external content; making it appear as if no delay exists.<br><br>
+
+Unfortunately, only BC manages the time when CDN packages load. Usual techniques for ordering scripting won't work in AL.</dd>
+</dl><br>
 
 Both the CDN and the download are shown in the following listing.
 
@@ -70,3 +71,6 @@ Both the CDN and the download are shown in the following listing.
 ### Download:<br>
 https://www.datatables.net/download/
 
+## Next
+
+The next module will cover standalone development in HTML, Javascript, and CSS.
