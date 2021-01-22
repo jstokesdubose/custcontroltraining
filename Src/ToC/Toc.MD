@@ -8,10 +8,6 @@
 >[Docker](.\environment.md#docker) ... If using containers<br>
 >[Git](.\environment.md#git) ...  Where to find this project<br>
 >[Visual Studio Code](.\environment.md#vsc) ... VS Code and its add-ins
-## [Tools](.\tools.md) ... What do we need for custom controls
->[Visual Studio Code](.\tools.md#vsc) .... As always<br>
->[JavaScript](.\tools.md#javascript) ... This is not a JS tutorial<br>
->[Dynamics BC](./tools.md#bc) ... Nuff said
 ## [Module 01: Working in Standalone JavaScript](../01%20Standalone/MD/Standalone.md) ... We'll start with something simple
 >[List of Files](../01%20Standalone/MD/Standalone.md#list) Fils found in the "Begin" path<br>
 >[Review of File Contents](../01%20Standalone/MD/Standalone.md#review)<br>

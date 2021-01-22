@@ -43,26 +43,6 @@ page 50100 DataTable
             }
         }
     }
-
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-                ApplicationArea = All;
-
-                trigger OnAction()
-                begin
-
-                end;
-            }
-        }
-    }
-
-    var
-        myInt: Integer;
-
     local procedure SeedSite(var _seed: text)
     begin
         _seed := '<h1> ';
