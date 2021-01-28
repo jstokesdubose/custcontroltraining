@@ -1,20 +1,22 @@
 # Environment
 
-This training module addresses building custom controls for Business Central using two approaches: 
+This training module addresses building Control Add-ins for Business Central using two approaches: 
 
  * Standalone HTML file with JS and CSS
  * The same logic and structure, but transferred into Business Central
 
-The resources to support our development inside Business Central represent a superset of the resources needed to work as a standalone HTML+JS+CSS IDE... with one addition. We'll cover that in a minute.
+ These will be presented separately. The first method shown is a simple proof-of-concept that does not rely on Dynamics or AL. It simplifies the real learning concepts.
 
-Since Business Central is used, this tutorial leverages a BC container inside of Docker
+The resources to support our development inside Business Central represent a superset of the resources needed to work as a standalone HTML+JS+CSS IDE. 
+
+Since Business Central is used, this tutorial leverages a BC container inside of Docker.
 
 ## <a name="docker">Docker</a>
-Docker container manager is used to host a Business Central container for AL extension development. The script I use will be shown in the appendix of this document.
+Docker is used to host a Business Central container for AL extension development, just like normal. The script I use to create the container will be shown in the appendix of this document.
 
-Developers following test-first development always install the test libraries and scaffolding, although no tests will be written for this tutorial. AL unit testing tools cannot be used in JavaScript, and the AL testing suite is mostly incompatible with JavaScript. So that won't be a included in this training.
+The script automatically installs the test libraries and scaffolding, although no tests will be written for this tutorial. AL unit testing tools cannot be used in JavaScript, and the AL testing suite is mostly incompatible with JavaScript. So that won't be a included in this training.
 
-Installing Docker, building a sandbox container, and connecting via VS Code is presumed but not covered in this tutorial.
+The "how-tos" of installing Docker, building a sandbox container, and connecting via VS Code is presumed but not covered in this tutorial.
 
 ## <a name="git">Git</a>
 A Git repository will be used (Tigunia DevOps), and installing Waldo's AL extension suite will install the VSCode tools needed to work with Git within VSCode.
@@ -24,19 +26,9 @@ A Git repository will be used (Tigunia DevOps), and installing Waldo's AL extens
 ## <a name="vsc">Visual Studio Code</a>
 VS Code is the only IDE used in this training.
 
-Several Extensions for VS Code should be included in your installation.
+Besides Waldo's AL extension pack, another extensions for VS Code should be included in your installation: [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer). The *Live Server* extension allows the developer to see immediate changes to an HTML (with JavaScript) page. This makes the initial coding and tooling of a JavaScript widget much easier.
 
-* Live Server (Ritwick Dey)
-* AL Extension Pack (waldo)
-
-In addition to Waldo's AL-code add-ins, one more is recommended: 
-[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer), with it's familiar *GoLive* button in the bottom of the VS Code window.
-
-The *Live Server* extension will allow the coder to see immediate changes to an HTML (with JavaScript) page. 
-
-Go into the VS Code extensions and search for *Live Server*. Assure it is by Ritwick Dey. Download and activate it.
-
-AL developers should already be familiar with the *AL Extension Pack* by Waldo.
+Developers may also find the extension by going into extensions and searching for *Live Server*. Assure it is by Ritwick Dey. Download and activate it.
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
@@ -45,18 +37,22 @@ AL developers should already be familiar with the *AL Extension Pack* by Waldo.
 
 ## <a name="javascript">JavaScript Development</a>
 
-JavaScript may be unfamiliar to many AL developers. While this is not a tutorial on JS, we will cover some concepts such as the ability to download our libraries on the fly. Two of those that we'll need are jQuery and our single widget, DataTables.
+JavaScript may be unfamiliar to many AL developers. JavaScript has a very common look to both C# and Java and anyone with any coding experience can likely understand what a JavaScript function does. 
 
-* jQuery (https://jquery.com)
+## Concepts of HTML and the Document Object Model
+
+One of the additional capabilities of working in a browser will be leveraged: we will cover the ability to download our scripts and style sheets on the fly. This is called *Content Delivery.* We'll use *Content Delivery Networks* to acquire scripts and stylesheets for our DataTable Widget. We will dynamically load files for the following:
+* Bootstrap (a style library <u>and</u> scripting)
+* jQuery (a javascript library)
 * DataTables (CloudTables) (https://www.datatables.net/)
 
-Both of these can be used without actually downloading the scripted code. We need only reference it in the header of the HTML page and it will download at runtime.
+We could download these files, store them on disk, and reference them as files, rather than web resources, but this will make our project simpler. We need only reference it in the header of the HTML page and it will download at runtime. We also asure that we get the latest version, too.
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
 <dd>Using the CDN may increase a delay between the time a web page becomes visible and when the script has been downloaded and active. <i>Caching</i> improves this after the first download. Other techniques can show the page in full and <u>then</u> download any external content; making it appear as if no delay exists.<br><br>
 
-Unfortunately, only BC manages the time when CDN packages load. Usual techniques for ordering scripting won't work in AL.</dd>
+Unfortunately, Business Central manages when and how CDN packages load. Trying to "trick" Business Central into doing what we want won't work.</dd>
 </dl><br>
 
 Both the CDN and the download are shown in the following listing.

@@ -127,3 +127,11 @@ The "ready" function is called by the DOM when the page completes loading. Witho
 
 This *\<script>* could be placed in a separate \*.js file, but it was just simpler to include it in the same HTML file as the table.
 
+The portion of the script that lists the data source, 
+````html
+        data: customers
+````
+is a <span style="font-weight:bold;font-style:italic;font-size:12pt">property</span> of the `DataTable`. In shorthand, it tells the `DataTable` code to look for a JavaScript variable named **customers** and use that as the data source.
+
+We'll create some dummy data after we fill in the style sheet.
+

@@ -1,6 +1,6 @@
 /// <summary>
 /// Page DataTable (ID 50100).
-/// Custom Control Page
+/// Control Add-in Page
 /// </summary>
 page 50100 DataTable
 {

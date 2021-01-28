@@ -1,6 +1,6 @@
 /// <summary>
 /// Page DataTable (ID 50100).
-/// Custom Control Page
+/// Control Add-in Page
 /// </summary>
 page 50100 DataTable
 {
@@ -32,7 +32,7 @@ page 50100 DataTable
                 begin
                     _customer.reset();
                     _waitDialog.Open('Filling Data');
-                    if _customer.findset() then 
+                    if _customer.findset() then
                         repeat
                             _custNoString := Format(_customer."No.");
                             CurrPage.iTable.AddCustomer(_custNoString, _customer.Name, _customer.Address, _customer.City, _customer.County);

@@ -1,12 +1,12 @@
 # <a name="standalone">Working in Standalone JavaScript</a>
 
-Before incorporating a custom control into Business Central, proving that the control works outside of BC smooths the rest of the work. For this reason, this module only utilizes VS Code and a browser.
+Before incorporating a Control Add-in into Business Central, proving that the control works outside of BC smooths the rest of the work. For this reason, this module only utilizes VS Code and a browser.
 
 **We can skip Business Central for the first steps.**
 
 **These files will be found in the repository under the *01 Standalone* folder.**
 
-Every custom control begins with HTML. Depending on the complexity of the data and the JS widget added, that HTML may be very simple or very complex or something in between.
+Every Control Add-in begins with HTML. Depending on the complexity of the data and the JS widget added, that HTML may be very simple or very complex or something in between.
 
 In other words, the only things necessary to make our sample work will be a few standalone files and a CDN reference or two.
 
@@ -30,7 +30,7 @@ These files will be all that's necessary to build a sample page with a working j
 
 <body>
     <h1>
-        <div id="title">JavaScript in Business Central!?</div>
+        <div id="title">JavaScript in the Browser!?</div>
     </h1>
 </body>
 <script>

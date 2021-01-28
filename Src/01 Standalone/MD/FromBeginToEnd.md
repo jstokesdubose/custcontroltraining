@@ -15,7 +15,7 @@ and
 <dd>These can be copied exactly from the "Begin" folder in the Git repo.</dd>
 </dl>
 
-Make it easy and just copy the following into the file:
+Make it easy and just copy the following into the `CustomerList.html` file:
 ````html
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,7 +25,7 @@ Make it easy and just copy the following into the file:
 
 <body>
     <h1>
-        <div id="title">JavaScript in Business Central!?</div>
+        <div id="title">JavaScript in the Browser!?</div>
     </h1>
 </body>
 <script>
@@ -65,7 +65,7 @@ Scripts instruct the browser to copy and include the contents of the files liste
 Likewise, add the following inside the *\<body>* of the HTML file:
 ````html
    <h1>
-        <div id="title">JavaScript in Business Central!?</div>
+        <div id="title">JavaScript in the Browser!?</div>
     </h1>
     <table id="customerTable" class="table">
         <thead>
@@ -83,15 +83,21 @@ Likewise, add the following inside the *\<body>* of the HTML file:
     <div id="footer"></div>
 </body>
 ````
+
+<dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px">Some Discussion:</dt>
+<dd>The HTML shown above defines a <code>Table</code> with an ID of <code>customerTable</code>. The table has a header row defined by the group of <code>th</code> elements. But something's missing.<br>There are no elements defining the data rows.<br>This is a characteristic of the <code>DataTables</code> widget chosen for this tutorial. Don't expect every widget to act accordingly (or even require a header row).</dd>
+</dl>
+
 The `<h1>` tag is an embellishment for the page and not really necessary. However, a heading on the page demonstrates whether the page is opened, even if the rest of the logic isn't working.
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="">Note:</a></dt>
-<dd>The "id" on the table, "customerTable," is necessary as the widget must be able to know to which control the additional styles and JS logic must be applied.
+<dd>The "id" on the table, <code>customerTable</code>, is necessary as the widget must be able to know to which control the additional styles and JS logic must be applied.
 
 This can be seen immediately below on the layout when we add the script that will attach *DataTable* to our HTML table.</dd></dl>
 
-The last thing to add to the HTML file is the script that runs the DataTable code on the HTML element.
+The last thing to add to the HTML is the script that runs the DataTable code on the HTML element.
 
 ````html
 <script>
@@ -108,9 +114,9 @@ The last thing to add to the HTML file is the script that runs the DataTable cod
 
 Briefly translated, this script is called <u>after</u> the whole of the page, including scripts downloaded from CDN, has finished running. 
 
-The `$(document)` command actually comes from jQuery, and is shorthand for, "return the element that has the id of `customerTable`."
+The `$(document)` command actually comes from the Document Object Model (DOM), and is shorthand for, "run this code when the document finished loading."
 
-This command actually returns an element and the `DataTable` logic extends the functionality to that element.
+While syntactically similar, the code `$('#customerTable')` returns the element with the `ID=customerTable`. This functionality comes from jQuery. The `DataTable` logic "applies" the functionality to that element.
 
 Within the anonymous function, only one parameter is applied to the `DataTable` object: "data." 
 <dl>
@@ -230,4 +236,9 @@ If we remove the scripting that attaches the functionality and styles to the `cu
 
 ![images](../../media/01StandaloneWOWidget.png)
 
-This shows everything the widget adds.
+This shows us our empty page without everything the widget adds.
+
+## Next
+In our next module, we will transcribe our HTML, our css, and our javascript into files inside Business Central. 
+
+We will see how things must be changed a moved, but they will still be very familiar to what we've done in our browser tutorial.

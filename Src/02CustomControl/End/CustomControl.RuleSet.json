@@ -1,6 +1,6 @@
 {
-    "name": "Custom Control Rule set",
-    "description": "Exceptions for Custom Controls",
+    "name": "Control Add-in Rule set",
+    "description": "Exceptions for Control Add-ins",
     "rules": [
         {
             "id": "DOC0101",

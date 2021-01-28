@@ -1,8 +1,8 @@
-# Building Custom Controls for Business Central<br>Table of Contents
+# Building Control Add-Ins for Business Central<br>Table of Contents
 ## [Introduction](./introduction.md) ... Welcome to this tutorial
 >[Old Architecture](./introduction.md#oldArch) NAV and C/AL<br>
 >[New Architecture](./introduction.md#newArch) BC and AL + JS<br>
->[Structure of a Custom Control](./introduction.md#control) ... Simple description of a custom control<br>
+>[Structure of a Control Add-in](./introduction.md#control) ... Simple description of a Control Add-in<br>
 >[Tutorial Widget](./introduction.md#widget) ... Our chosen Javascript widget
 ## [Environment](.\environment.md) ... What we need.
 >[Docker](.\environment.md#docker) ... If using containers<br>
@@ -15,7 +15,7 @@
 >>[custStyle.css](../01%20Standalone/MD/Standalone.md#style) ... Styles to make the page look better<br>
 >>[data.js](../01%20Standalone/MD/Standalone.md#data) ... Data for our widget (testing only)
 
-### [Creating an HTML File](../01%20Standalone/MD/CustomerTable.md) ... Parts of the HTML file and explanations
+### [Creating the HTML File](../01%20Standalone/MD/CustomerTable.md) ... Parts of the HTML file and explanations
 >[Declaration](../01%20Standalone/MD/CustomerTable.md#declaration) ... HTML Skeleton<br>
 >[Header](../01%20Standalone/MD/CustomerTable.md#header) ... Contents of the header<br>
 >[Body](../01%20Standalone/MD/CustomerTable.md#body) ... Contents of the HTML Body
