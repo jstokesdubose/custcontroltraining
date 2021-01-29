@@ -1,22 +1,28 @@
 # Environment
 
-This training module addresses building Control Add-ins for Business Central using two approaches: 
+This training module uses two environments for development:
 
- * Standalone HTML file with JS and CSS
- * The same logic and structure, but transferred into Business Central
+ * HTML File
+    * VS Code with the Live Server add-in
+ * BC Development
+    * VS Code
+    * Docker
+    * BC Container
 
- These will be presented separately. The first method shown is a simple proof-of-concept that does not rely on Dynamics or AL. It simplifies the real learning concepts.
+<blockquote> These will be presented separately. The first method shown is a simple proof-of-concept that does not rely on Dynamics or AL. It simplifies the real learning concepts.</blockquote><br>
 
 The resources to support our development inside Business Central represent a superset of the resources needed to work as a standalone HTML+JS+CSS IDE. 
 
-Since Business Central is used, this tutorial leverages a BC container inside of Docker.
 
 ## <a name="docker">Docker</a>
-Docker is used to host a Business Central container for AL extension development, just like normal. The script I use to create the container will be shown in the appendix of this document.
 
-The script automatically installs the test libraries and scaffolding, although no tests will be written for this tutorial. AL unit testing tools cannot be used in JavaScript, and the AL testing suite is mostly incompatible with JavaScript. So that won't be a included in this training.
+Since Business Central is used and this is a tutorial not intended to interact with other BC extensions, we will work inside a Docker container with the most recent version of BC.
 
-The "how-tos" of installing Docker, building a sandbox container, and connecting via VS Code is presumed but not covered in this tutorial.
+The script used to create the container will be shown in the appendix of this document.
+
+The script automatically installs the test libraries and scaffolding, although no tests will be written for this tutorial.
+
+The "how-tos" of installing Docker, building a sandbox container, and connecting via VS Code are all presumed but not covered in this tutorial.
 
 ## <a name="git">Git</a>
 A Git repository will be used (Tigunia DevOps), and installing Waldo's AL extension suite will install the VSCode tools needed to work with Git within VSCode.
@@ -26,9 +32,7 @@ A Git repository will be used (Tigunia DevOps), and installing Waldo's AL extens
 ## <a name="vsc">Visual Studio Code</a>
 VS Code is the only IDE used in this training.
 
-Besides Waldo's AL extension pack, another extensions for VS Code should be included in your installation: [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer). The *Live Server* extension allows the developer to see immediate changes to an HTML (with JavaScript) page. This makes the initial coding and tooling of a JavaScript widget much easier.
-
-Developers may also find the extension by going into extensions and searching for *Live Server*. Assure it is by Ritwick Dey. Download and activate it.
+[Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) will be used for interactive HTML page updates.
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
@@ -37,11 +41,11 @@ Developers may also find the extension by going into extensions and searching fo
 
 ## <a name="javascript">JavaScript Development</a>
 
-JavaScript may be unfamiliar to many AL developers. JavaScript has a very common look to both C# and Java and anyone with any coding experience can likely understand what a JavaScript function does. 
+JavaScript may be unfamiliar to many AL developers. JavaScript has a very common look to both C# and Java and anyone with any of this kind of coding experience can likely understand what a JavaScript function does. 
 
-## Concepts of HTML and the Document Object Model
+## The Content Delivery Network
 
-One of the additional capabilities of working in a browser will be leveraged: we will cover the ability to download our scripts and style sheets on the fly. This is called *Content Delivery.* We'll use *Content Delivery Networks* to acquire scripts and stylesheets for our DataTable Widget. We will dynamically load files for the following:
+One of the ways we provide third-party code and styles to our browser application is called *Content Delivery.* We'll use *Content Delivery Networks* to acquire scripts and stylesheets for our DataTable Widget. We will dynamically load additional files for the following:
 * Bootstrap (a style library <u>and</u> scripting)
 * jQuery (a javascript library)
 * DataTables (CloudTables) (https://www.datatables.net/)
@@ -50,9 +54,8 @@ We could download these files, store them on disk, and reference them as files, 
 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
-<dd>Using the CDN may increase a delay between the time a web page becomes visible and when the script has been downloaded and active. <i>Caching</i> improves this after the first download. Other techniques can show the page in full and <u>then</u> download any external content; making it appear as if no delay exists.<br><br>
-
-Unfortunately, Business Central manages when and how CDN packages load. Trying to "trick" Business Central into doing what we want won't work.</dd>
+<dd>Some people experience latency when using a CDN. There is a "round trip" of the request and the content delivery and the further from the CDN, the longer the latency. The size of the content may extend the experienced delay. <br><br>In other products, <i>caching</i> improves this after the first download. Document Object Model management can also improve the <i>perception</i> of delay. Unfortunately, Control Add-ins in BC are at the mercy of how BC wants to manage content delivery.<br><br>
+</dd>
 </dl><br>
 
 Both the CDN and the download are shown in the following listing.

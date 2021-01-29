@@ -1,5 +1,9 @@
 # From Begin to End
+
+Before incorporating a Control Add-in into Business Central, proving that the control works outside of BC smooths the rest of the work. For this reason, this module only utilizes VS Code and a browser.
+
 Start in a new folder in Visual Studio Code. For this tutorial the folder will be called CustomControl.
+
 
 Add three files:
 
@@ -7,12 +11,41 @@ Add three files:
 * custStyle.css<br>
 and
 * data.js
+<br><br>
+
+> ![CustomControl](../../media/threefiles.png)
+
+<br>
+
+<blockquote>Two instances of these files will be available under <i>01 Standalone</i>. They exist in an incomplete form in the <i>Begin</i> folder and finished in the <i>End</i> folder.</blockquote><br>
+
 
 ## CustomerList.html
 
+Every Control Add-in begins with HTML scaffolding. Depending on the complexity of the data and the JS widget added, that HTML may be very simple or very complex or something in between. We'll still need it.
+
+The simplest HTML layout has the following sections:
+```html
+<html>
+    <head>
+    </head>
+    <body>
+    </body>
+</html>
+```
+## <a name="header">Header Contents</a>
+Within the header the CustomerList.html file adds three kinds of content:
+
+* a title
+* links<br>
+and
+* scripts
+
+
+
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
-<dd>These can be copied exactly from the "Begin" folder in the Git repo.</dd>
+<dd>The following can be copied exactly from the <i>Begin</i> folder in the Git repo.</dd>
 </dl>
 
 Make it easy and just copy the following into the `CustomerList.html` file:
@@ -35,37 +68,26 @@ Make it easy and just copy the following into the `CustomerList.html` file:
 ````
 It saves on typing.
 
-Fill in the scripts and links in the <head> section with the following:
-````html
-    <title>JS Demo</title>
+This may not be the simplest html templates known to exist, but it's close. For the record, the following have been provided:
+* `<!DocType>`
+* `<head></head>`
+* `<body></body>` with a simple `<h1></h1>` and a bit of text
+<br>and<br>
+* `<script></script>`
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.css" />
-    <link rel="stylesheet" type="text/css" href="custStyle.css" />
+These are simply placeholders for what will come.
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.js"></script>
-    <script  src="data.js"></script>
-````
 
-The `<title>` is optional.
+## <a name="body">Body</a>
+We add the `<body></body>` of *CustomerList.html*, defining a very simple HTML table.
 
-Links in an HTML header point the browser to external files. As shown, these can exist locally or on the internet.
+For purely aesthetic reasons, a title `<h1>` tag presents a title for the table.
 
-Scripts instruct the browser to copy and include the contents of the files listed as part of the page. 
-<dl>
-<dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="">Proof:</a></dt>
-<dd>You can see this by opening a browser (Edge, in this case), pressing <i>F12 >> Sources >> Page</i>.
 
-</dd>
-</dl>
-
-![alt](../../media/CDNContent.PNG)
-
-Likewise, add the following inside the *\<body>* of the HTML file:
-````html
-   <h1>
-        <div id="title">JavaScript in the Browser!?</div>
+``` html
+<body>
+    <h1>
+        <div id="title">JavaScript in Business Central!?</div>
     </h1>
     <table id="customerTable" class="table">
         <thead>
@@ -82,22 +104,56 @@ Likewise, add the following inside the *\<body>* of the HTML file:
     </table>
     <div id="footer"></div>
 </body>
+```
+
+## Table
+The **id** of the `<table id="customerTable">` definion allows the *DataTable* widget to interact with the table. Otherwise, this table has no remarkable features &ndash; except that it lacks data rows.
+
+Only header rows exist in this table definition. This is unusual as most tables have a place for data. It's a trick. The `DataTable` does this magic.
+
+<div style="margin-left:20px;">This lack of body rows makes this an obvious requirement for the <i>DataTable</i>. Also evident, but seemingly unused, the </div>
+
+`<div id="footer"></div>`
+
+<div style="margin-left:20px;">must be specified so <code>DataTable</code> knows where to place the paging controls.
+
+All of this can be found in the <code>DataTables</code> documentation.</div>
+
+## The Header
+
+We don't yet have content in the `<head></head>` portion of the HTML file. This is where we place links to files that should be available within the page. These include script and styles, as well as images or media (which we don't need for this tutorial).
+
+Copy the scripts and links in the `<head></head>` section with the following:
+````html
+    <title>JS Demo</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.css" />
+    <link rel="stylesheet" type="text/css" href="custStyle.css" />
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.js"></script>
+    <script  src="data.js"></script>
 ````
 
+The `<title>` is optional.
+
+Links in an HTML header point the browser to external files. As shown, these can exist locally or on the internet.
+
+The links that reference Internet HTTPS links to CDN end-points instruct the browser to copy and include the contents of these files dynamically. 
 <dl>
-<dt style="font-style:italic;font-weight:bold;font-size:14px">Some Discussion:</dt>
-<dd>The HTML shown above defines a <code>Table</code> with an ID of <code>customerTable</code>. The table has a header row defined by the group of <code>th</code> elements. But something's missing.<br>There are no elements defining the data rows.<br>This is a characteristic of the <code>DataTables</code> widget chosen for this tutorial. Don't expect every widget to act accordingly (or even require a header row).</dd>
-</dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="">Proof:</a></dt>
+<dd>If one of those end-points is used as a browser address, the contents of the file loads in the browser window document. Because it is text/script, it is readable. Most browsers will show the and press <code>F12</code> for the Inspector. Look at the <b>source</b> and name of every link will be shown.
+</dd>
+</dl><br>
 
-The `<h1>` tag is an embellishment for the page and not really necessary. However, a heading on the page demonstrates whether the page is opened, even if the rest of the logic isn't working.
+![alt](../../media/CDNContent.PNG)
 
-<dl>
-<dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="">Note:</a></dt>
-<dd>The "id" on the table, <code>customerTable</code>, is necessary as the widget must be able to know to which control the additional styles and JS logic must be applied.
 
-This can be seen immediately below on the layout when we add the script that will attach *DataTable* to our HTML table.</dd></dl>
+The last thing to add to the HTML is the script that runs the `DataTable` code on the HTML element.
 
-The last thing to add to the HTML is the script that runs the DataTable code on the HTML element.
+This can be seen immediately below on the layout when we add the script that will attach *DataTable* to our HTML table.<br><br>Notice that the table ID, <code>$("#customerTable")</code> returns the document element (jargon alert) and `DataTable` extends that element.</dd></dl><br><br>
+
 
 ````html
 <script>
@@ -112,13 +168,13 @@ The last thing to add to the HTML is the script that runs the DataTable code on 
 </script>
 ````
 
-Briefly translated, this script is called <u>after</u> the whole of the page, including scripts downloaded from CDN, has finished running. 
+Briefly translated, this script is called <u>after</u> the whole of the page, including CDN links, have finished loading. 
 
 The `$(document)` command actually comes from the Document Object Model (DOM), and is shorthand for, "run this code when the document finished loading."
 
-While syntactically similar, the code `$('#customerTable')` returns the element with the `ID=customerTable`. This functionality comes from jQuery. The `DataTable` logic "applies" the functionality to that element.
-
-Within the anonymous function, only one parameter is applied to the `DataTable` object: "data." 
+Within the anonymous function passed as a parameter in the call to `DataTable`, only one parameter is applied to the `DataTable` object: &nbsp; &nbsp; &nbsp;`data: customers`. 
+<br><br>
+`customers` is a JavaScript variable we'll see in `data.js`.<br>
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
 <dd>As briefly discussed earlier, the data for this portion of the tutorial are static data. 
@@ -194,6 +250,8 @@ a.page-link {
 ## Data
 Lastly, we need to dummy up some data. The `data.js` file should contain the following.
 
+As referenced in the script instantiating the `DataTable` control, the variable `customers` comes from this JavaScript file.
+
 ````javascript
 var customers = [
     [
@@ -212,7 +270,7 @@ var customers = [
     ]
 ]
 ````
-Notice how the order of the `JSON Array of Arrays' matches the order of the HTML table headers.
+Notice how the order of the `JSON Array of Arrays' matches the order of the HTML table headers. Apparently, the widget knows which columns in which to place data only by the order in the array.
 
 ````html
 <th width=10%>Customer No.</th>	------->  "10000",
@@ -222,7 +280,6 @@ Notice how the order of the `JSON Array of Arrays' matches the order of the HTML
 <th width=10%>State</th> ------->         "Ohio"
 ````
 
-The `TableData` javascript widget obviously relies on order for its layout.
 
 ## Product
 
@@ -239,6 +296,6 @@ If we remove the scripting that attaches the functionality and styles to the `cu
 This shows us our empty page without everything the widget adds.
 
 ## Next
-In our next module, we will transcribe our HTML, our css, and our javascript into files inside Business Central. 
+In our next module, we will transcribe our HTML, css, our javascript into files inside Business Central. This includes our custom content as well as where to place the calls to the delivered content.
 
-We will see how things must be changed a moved, but they will still be very familiar to what we've done in our browser tutorial.
+We will see how things must be changed and moved, but they will still be very familiar to what we've done in our browser tutorial.

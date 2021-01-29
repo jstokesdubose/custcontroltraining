@@ -1,15 +1,5 @@
 # Layout for the Customer Table
 
-The simplest HTML layout has the following sections:
-```html
-<html>
-    <head>
-    </head>
-    <body>
-    </body>
-</html>
-```
-*CustomerList.html* does not extend the layout much more than that &ndash; and the addition of a table.
 
 ## <a name="declaration">Declaration</a>
 The texts say that an HTML file must begin with a **DOCTYPE** declaration. While no longer true for most browsers, declarinig a DOCTYPE exhibits good form.

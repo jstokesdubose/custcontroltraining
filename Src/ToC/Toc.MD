@@ -9,7 +9,7 @@
 >[Git](.\environment.md#git) ...  Where to find this project<br>
 >[Visual Studio Code](.\environment.md#vsc) ... VS Code and its add-ins
 ## [Module 01: Working in Standalone JavaScript](../01%20Standalone/MD/Standalone.md) ... We'll start with something simple
->[List of Files](../01%20Standalone/MD/Standalone.md#list) Fils found in the "Begin" path<br>
+>[List of Files](../01%20Standalone/MD/Standalone.md#list) Files found in the "Begin" path<br>
 >[Review of File Contents](../01%20Standalone/MD/Standalone.md#review)<br>
 >>[CustomerList.html](../01%20Standalone/MD/Standalone.md#html) ... Our pallette<br>
 >>[custStyle.css](../01%20Standalone/MD/Standalone.md#style) ... Styles to make the page look better<br>
