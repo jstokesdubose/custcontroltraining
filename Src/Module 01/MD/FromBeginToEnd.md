@@ -1,9 +1,12 @@
 # From Begin to End
 
+In this module we'll build a working web page with a JavaScript widget used to embellish an HTML table and data.
+
 Before incorporating a Control Add-in into Business Central, proving that the control works outside of BC smooths the rest of the work. For this reason, this module only utilizes VS Code and a browser.
 
-Start in a new folder in Visual Studio Code. For this tutorial the folder will be called CustomControl.
+Let's get started.
 
+Start in a new folder in Visual Studio Code. For this tutorial the folder will be called `CustomControl`.
 
 Add three files:
 
