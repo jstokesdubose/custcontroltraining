@@ -1,6 +1,6 @@
 {
   "id": "5e06e6eb-f1b0-4218-8ed6-c91180e56be7",
-  "name": "03CustomControl",
+  "name": "03ControlAddIn",
   "publisher": "Tigunia",
   "version": "1.0.0.0",
   "brief": "",
@@ -22,7 +22,7 @@
       "to": 50149
     }
   ],
-  "contextSensitiveHelpUrl": "https://02CustomControl.com/help/",
+  "contextSensitiveHelpUrl": "https://02ControlAddIn.com/help/",
   "showMyCode": true,
   "runtime": "6.0"
 }

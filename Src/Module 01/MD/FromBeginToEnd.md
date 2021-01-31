@@ -16,11 +16,11 @@ and
 * data.js
 <br><br>
 
-> ![CustomControl](../../media/threefiles.png)
+> ![ThreeFiles](../../media/threefiles.png)
 
 <br>
 
-<blockquote>Two instances of these files will be available under <i>01 Standalone</i>. They exist in an incomplete form in the <i>Begin</i> folder and finished in the <i>End</i> folder.</blockquote><br>
+<blockquote>Two instances of these files will be available under <i>Module 01</i>. They exist in an incomplete form in the <i>Begin</i> folder and finished in the <i>End</i> folder.</blockquote><br>
 
 
 ## CustomerList.html
@@ -146,7 +146,7 @@ Links in an HTML header point the browser to external files. As shown, these can
 The links that reference Internet HTTPS links to CDN end-points instruct the browser to copy and include the contents of these files dynamically. 
 <dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px"><a href="">Proof:</a></dt>
-<dd>If one of those end-points is used as a browser address, the contents of the file loads in the browser window document. Because it is text/script, it is readable. Most browsers will show the and press <code>F12</code> for the Inspector. Look at the <b>source</b> and name of every link will be shown.
+<dd>If one of those end-points is used as a browser address, the contents of the file loads in the browser window document. Because it is text/script, it is readable. Most browsers will show the and press <code>F12</code> for the Inspector. Look at the <b>source</b> and the name of every link will be shown.
 </dd>
 </dl><br>
 
@@ -173,18 +173,12 @@ This can be seen immediately below on the layout when we add the script that wil
 
 Briefly translated, this script is called <u>after</u> the whole of the page, including CDN links, have finished loading. 
 
-The `$(document)` command actually comes from the Document Object Model (DOM), and is shorthand for, "run this code when the document finished loading."
+The `$(document)` command actually comes from the Document Object Model (DOM), and is shorthand for, "run this code when the document finishes loading."
 
 Within the anonymous function passed as a parameter in the call to `DataTable`, only one parameter is applied to the `DataTable` object: &nbsp; &nbsp; &nbsp;`data: customers`. 
 <br><br>
-`customers` is a JavaScript variable we'll see in `data.js`.<br>
-<dl>
-<dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
-<dd>As briefly discussed earlier, the data for this portion of the tutorial are static data. 
 
-What may have been missed is that the `JSON Array of Arrays` was assigned to a variable of `customers`.
-
-The parameter understands that some kind of JSON object will be referenced. If the variable is not a JSON object, the page will not display any data.</dd></dl>
+The parameter understands that some kind of JSON object will be referenced. If the variable is not a JSON object, the page will not display any data.
 
 ## custStyle.css
 
@@ -282,6 +276,13 @@ Notice how the order of the `JSON Array of Arrays' matches the order of the HTML
 <th width=20%>City</th> ------->          "Springfield",
 <th width=10%>State</th> ------->         "Ohio"
 ````
+
+Now we see the `customers` JavaScript variable.<br>
+<dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px">Note:</dt>
+<dd>As briefly discussed earlier, the data for this portion of the tutorial are static data. 
+
+What may have been missed is that the `JSON Array of Arrays` was assigned to a variable of `customers`.</dd></dl>
 
 
 ## Product

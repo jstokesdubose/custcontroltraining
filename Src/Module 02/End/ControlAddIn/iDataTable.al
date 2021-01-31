@@ -3,7 +3,7 @@
 /// </summary>
 controladdin iDataTable 
 {
-    StartupScript = '.\CustomControl\startup.js';
+    StartupScript = '\CustomControl\startup.js';
  
     StyleSheets = 'https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.css',
                 '.\CustomControl\custStyle.css';
@@ -25,7 +25,7 @@ controladdin iDataTable
     MinimumWidth = 500;
 
     event ControlReady();
-    event FillCustomerArray();
+    //event FillCustomerArray();
 
     /// <summary>
     /// Render.
@@ -37,17 +37,6 @@ controladdin iDataTable
     /// LinkWidget.
     /// </summary>
     procedure LinkWidget();
-    /// <summary>
-    /// AddCustomer.
-    /// </summary>
-    /// <param name="custNo">text.</param>
-    /// <param name="custName">text.</param>
-    /// <param name="custAddress">text.</param>
-    /// <param name="custCity">text.</param>
-    /// <param name="CustState">text.</param>
-    procedure AddCustomer(custNo: text; custName: text;
-                         custAddress: text; custCity: text;
-                         CustState: text);
 
 
 }
