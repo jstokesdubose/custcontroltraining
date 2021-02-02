@@ -44,9 +44,6 @@ page 50100 DataTable
         }
     }
 
-    var
-        myInt: Integer;
-
     local procedure SeedSite(var _seed: text)
     begin
         _seed := '<h1> ';
