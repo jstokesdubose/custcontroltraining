@@ -27,24 +27,8 @@ controladdin iDataTable
     event ControlReady();
     event FillCustomerArray();
 
-    /// <summary>
-    /// Render.
-    /// </summary>
-    /// <param name="HTLM">Text.</param>
     procedure Render(HTLM: Text);
-
-    /// <summary>
-    /// LinkWidget.
-    /// </summary>
     procedure LinkWidget();
-    /// <summary>
-    /// AddCustomer.
-    /// </summary>
-    /// <param name="custNo">text.</param>
-    /// <param name="custName">text.</param>
-    /// <param name="custAddress">text.</param>
-    /// <param name="custCity">text.</param>
-    /// <param name="CustState">text.</param>
     procedure AddCustomer(custNo: text; custName: text;
                          custAddress: text; custCity: text;
                          CustState: text);

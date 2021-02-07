@@ -14,7 +14,7 @@ function LinkWidget () {
 };
 
 function AddCustomer(custNo, custName, custAddress, custCity, CustState) {
-    customer = [];
+    var customer = [];
     customer.push(custNo);
     customer.push(custName);
     customer.push(custAddress);

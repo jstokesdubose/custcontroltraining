@@ -1,26 +1,28 @@
 # From Begin to End: Module 02
 
-Hello, I'm Jeff Stokes Du Bose and I'm continuing the tutorial on creating Control Add-ins in Business Central. In this module we'll transfer and restructure all the layout and code we built in Module 01 for the Standalone Web Page.
+Hello, I'm Jeff Stokes Du Bose and I'm continuing the tutorial on creating Control Add-ins in Business Central. In this module we'll transfer and restructure all the layout and code we built in Module 01 into the Business Central extension.
 
 We'll see the transformations of our code and layouts, and we'll use the new tools that Microsoft provided for our Control Add-in development. 
 
-Firstly, it's important to recognize how a Control Add-in gets **inserted** into a Business Central Page. Business Central creates an `iframe` in the `Document Object Model`. BC then places the content from our files into the `<head>` portion of the `iframe`. It manages the `<body>` of the `iframe`, and places our content in it. It does all this automatically. 
+Firstly, it's important to recognize how a Control Add-in gets **inserted** into a Business Central Page. Business Central creates an `iframe` in the `Document`. BC then places the content from our files into the `<head>` portion of the `iframe`. It manages the `<body>` of the `iframe`, and places our content in it. It does all this automatically so long as we organize our solution properly.
 
-We'll start with a Customer List Page.
+The following is an example.
+
+We'll start with a Customer List Page. I'll put a Controll Add-in in the blank area below the list.
 
 ![Customers](../../media/CustomerPage1.png)
 
-If we could see an empty iframe, maybe it would look like this.
+If we could see an empty iframe that we could use for our Control Add-in, maybe it might look like this.
 
 ![Customeriframe](../../media/customerpage2.png)
 
-BC leaves a toe-hold in the `iframe`: a `<div>` with the `id="controlAddIn"`. Because we can use the Document Object Model to search and return the element (the `<div`> in this case), we can then use some DOM trickery to insert our `HTML` scaffolding inside. 
+BC leaves a toe-hold in the `iframe`: a `<div>` HTML element with the `id="controlAddIn"`. Because we can use the Document Object Model to search and return the element (the `<div`> in this case), we can then use some DOM trickery to insert our `HTML` scaffolding inside. 
 
 In this way, we have our workbench where we can then run a second web page from within the Business Central web page. 
 
 Only by searching on the page for this `<div id="controlAddIn">` can we insert anything into the page. Business Central constrains all content by placing it in an `iframe`. Of all the variables in the universe, we can depend on this one to be static for this Control Add-In. 
 
-In other words, as we start our **Control Add-in** design, we must keep in mind that we're actually building a separte web page within an `iframe`. 
+In other words, as we start our **Control Add-in** design, we must keep in mind that we're actually building a separate web page within an `iframe`. 
 
 ![customerwidget](../../media/CustomerPage3.png)
 
@@ -35,12 +37,13 @@ We're building our own web page inside the <code>iframe</code>, and if I can't t
 As we design our `iframe` web page, we understand that it's just like every other web page, but now BC is in charge. We have to use the tools BC provides to control what runs in our page and when. 
 
 In terms of stages of running code, the following is a good road map:
-* The start of everything we want to control goes into `startup.js`.
-  * get the `id="controlAddIn"` element 
-  * call the **trigger** inside our `usercontrol` in our BC page that will send in the HTML
-  * Call the JavaScript function that we know will attach the JavaScript widget to our HTML scaffolding
+* The start of everything in our JavaScript that we want to control goes into `startup.js`.
+  * in `startup.js` we get the `id="controlAddIn"` `<div>` element and assign it to a JavaScript variable
+  * `startup.js` then calls to our BC trigger inside our `usercontrol` in our BC page that will send in the text of our HTML scaffolding into our  `iframe` and insert it in the `controlAddIn` `<div>` element
+  * Then, from within our `userControl` trigger, we call the JavaScript function that we know will attach the JavaScript widget to our HTML scaffolding
+
 * We'll consume `DataTable.js` and `data.js` and `custStyle.css` files as links in the `StyleSheets` and `links` assignments inside our `iDataTable.controladdin.al` file
-* Our `usercontrol` trigger will call the JavaScript functions that now reside in out `iframe` page.
+
 
 ![orderofbattle](../../media/orderofbattlemarked.png)
 
@@ -50,7 +53,7 @@ Let's start.
 
 ## Building a Business Central Extension
 
-To simplify as a start, this time we're writing a Business Central Extension. That's the primary approach for Control Add-ins. We build the extension first and populate the Control Add-in logic later. 
+The start is simple. We're writing a Business Central Extension. The Control Add-in will just be a control on a page. That's the simple definition of Control Add-ins. We build the extension first and populate the Control Add-in logic later. 
 
 Our BC extension project looks familiar: This one was created by using the `AL: Go` command in the *Command Palette*, and adjusting both the launch.json and the app.json files. The other `*.json` files of an extension project are there, too.
 
@@ -58,19 +61,19 @@ These files are provided in the Git and LMS projects, so I won't go into the dif
 
 ## ControlAddIn
 
-What's important is what's beneath the new folder, **ControlAddIn**. In total, I have included six files in my project:
+What's important is what's beneath the folder, **ControlAddIn**. In total, I have included six files in my project folder:
 
-* `custStyle`
+* `custStyle.css`
 * `data.js`
 * `DataTable.js` 
 * `startup.js`
-### Two AL Files
+
 The two `*.al files are:
 
 * `DataTable.page.al`<br>
 **DataTable.page.al** is a custom page that will consume the control add-in control.
 <br>and
-* `iDataTable.controladdin.al`
+* `iDataTable.controladdin.al`<br>
 **iDataTable.controladdin.al** is the definition for the control add-in.
 
 ## DataTable.page.al
@@ -97,16 +100,14 @@ page 50100 DataTable
     }
 }
 ````
-A page that holds a `usercontrol` is a common card type Page. What's different is the introduction of a new page part.
+A page that holds a `usercontrol` is a common card type Page. What's different is the introduction of a new page part, `usercontrol`. 
 
-Notice in the **layout/area** the `usercontrol` keyword defines the page part of the controladdin object.
-
-This is all we need to stub in our AL page.
+This is all we need to stub in our AL page. We'll add more in a minute.
 ## Let's Make This Work
 
 In my opinion, the most complicated object is the new Control Add-in. So let's start there first.
 
-First, a bit of trivia: I like to use the same nomenclature of an *interface* in C# for the *controladdin* object name. In a sense, this is accurate. Debate will commence.
+First, a bit of trivia: I like to use the same nomenclature of an *interface* in C# for the *controladdin* object name. In a sense, this is accurate. Debate will commence. It's also a reminder that we're building content to an `iframe`. It works both ways.
 
 The code in the stub of the `controladdin` is simple:
 
@@ -193,7 +194,7 @@ An example of such a call will be seen in the page, like this: `CurrPage.iTable.
 
 We've got some code to add to `DataTable.page.al`. 
 
-In the user control, add the following:
+In the user control, add the following trigger:
 
 ````js
             usercontrol(iTable; iDataTable)
@@ -212,9 +213,7 @@ In the user control, add the following:
         }
 ````
 
-The important part is the trigger.
-
-But first, the `SeedSite` procedure needs to be defined.
+We need to define the `SeedSite` procedure.
 
 ````js
     local procedure SeedSite(var _seed: text)
@@ -237,7 +236,7 @@ But first, the `SeedSite` procedure needs to be defined.
         _seed += '</table> ';
     end;
 ````
-This was described earlier as a transformation from `HTML` to `AL`. But we must put it in a text variable (named `_seed`) so we can send it to the `Render` function in JavaScript.
+This is a transformation from `HTML` to `AL`. But we must put it in a text variable (named `_seed`) so we can send it to the `Render` function in JavaScript.
 
 <br><hr><dl>
 <dt style="font-style:italic;font-weight:bold;font-size:14px">More than one way...</dt>
@@ -377,7 +376,7 @@ var customers = [
 
 In our `startup.js` file, the following is used.
 ````js
-varHTMLContainer = document.getElementById("controlAddIn");
+var HTMLContainer = document.getElementById("controlAddIn");
 
 Microsoft.Dynamics.NAV.InvokeExtensibilityMethod("ControlReady", []);
 ````
@@ -424,9 +423,31 @@ The second line will call a `Trigger` on the `iTable` `usercontrol`.
 
 Starting with what we had in Module 01 with our standalone HTML page, I'll attempt to show how standalone code transforms into Control Add-in code.
 
-The following table show, side-by-side, the source from `CustomerList.html` and what it became in `iDataTable.controladdin.al`.
+This comparison shows, side-by-side, the HTML table definition and the transfomation into a string with the table definition as contents. Strings of HTML are harder to read than structured content in an HTML file, but the content remains unchanged.
 
-The real differences come in how the two platforms interpret the information. The references didn't change.
+Notice that even the `<body>` title is still there, although we've changed it for Business Central.
+
+The `<table id="customerTable">` remains on both sides. HTML was a markup language. 
+
+And the HTML definitions for the table header row only change by syntax. All else stays the same.
+
+![html](../../media/tablestructure.png)
+
+An additional cost occurs in the AL page, too. My design requires that we fill the `_seed` global prior to sending it to the JavaScript in the `iframe`. Remember, that call is found inm the `ControlReady` trigger on the iTable control.
+
+Other than that, this transformation is comparatively simple.
+
+## Links and Scripts
+
+Our transformation of the `<head>` content of `<link>`s and `<script>`s also involves more of a syntax change than content. What belonged in the `<head>` block now goes into the `controladdin` object in AL. The only addition is a `DataTable.js` file in the scripts.
+
+`<Link>`s now become `StyleSheets`. `<Script>`s remain `Script`s, but both have a layout and <u>type</u> change. As before, we transform from HTML markup to strings. In this case, to arrays of comma-separated strings. 
+
+<br><hr><dl>
+<dt style="font-style:italic;font-weight:bold;font-size:14px">Has anyone asked?</dt>
+<dd>Where did the <b>StartupScript</B>, <b>StyleSheets</b>, and <b>Scripts</b> come from?<br><br>
+Thery're properties of the new `controladdin` object. You can read all about 'em in the Microsoft documentation.</dd>
+</dl><hr><br>
 
 <table style="width: 90%;" border="1" cellpadding="2">
 <tbody>
@@ -462,70 +483,9 @@ The real differences come in how the two platforms interpret the information. Th
 </table>
 
 
-The `<table>` definition in the `html` file remains the same but we'll have to use a technique to insert the `HTML` into the right place in the AL page.
-
-![html](../../media/tablestructure.png)
-
-
-<table style="width: 90%;" border="1" cellpadding="2">
-<tbody>
-<tr style="font-weight:Bold;font-size:14pt;color:#eeed08";>
-<td style="width: 50%">Standalone</td>
-<td style="width: 50%">Control Add-in</td>
-</tr>
-<tr>
-<td>CustomerList.html</td>
-<td>DataTable.page.al</td>
-</tr>
-<tr>
-<td><pre>
-    &lt;h1&gt;
-        &lt;div id="title"&gt;JavaScript in the Browser&lt;/div&gt;
-    &lt;/h1&gt;
-    &lt;table id="customerTable" class="table"&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th width=12%&gt;Customer No.&lt;/th&gt;
-                &lt;th width=20%&gt;Customer Name&lt;/th&gt;
-                &lt;th width=30%&gt;Address&lt;/th&gt;
-                &lt;th width=20%&gt;City&lt;/th&gt;
-                &lt;th width=10%&gt;State&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tbody&gt;
-        &lt;/tbody&gt;
-    &lt;/table&gt;
-    &lt;div id="footer"&gt;&lt;/div&gt;
-</pre></td>
-<td>
-<pre>
-    local procedure SeedSite(var _seed: text)
-    begin
-        _seed := '&lt;h1&gt; ';
-        _seed += '&lt;div id="title"&gt;JavaScript in Business Central!?&lt;/div&gt; ';
-        _seed += '&lt;/h1&gt; ';
-        _seed += '&lt;table id="customerTable" class="table"&gt; ';
-        _seed += '&lt;thead&gt; ';
-        _seed += '&lt;tr&gt; ';
-        _seed += '&lt;th width=10%&gt;Customer No.&lt;/th&gt; ';
-        _seed += '&lt;th width=20%&gt;Customer Name&lt;/th&gt; ';
-        _seed += '&lt;th width=20%&gt;Address&lt;/th&gt; ';
-        _seed += '&lt;th width=20%&gt;City&lt;/th&gt; ';
-        _seed += '&lt;th width=10%&gt;State&lt;/th&gt; ';
-        _seed += '&lt;/tr&gt; ';
-        _seed += '&lt;/thead&gt; ';
-        _seed += '&lt;tbody&gt; ';
-        _seed += '&lt;/tbody&gt; ';
-        _seed += '&lt;/table&gt; ';
-    end;
-
-</pre>
-</td>
-</tr>
-</tbody>
-</table>
-
 The JavaScript function that we buried in the `Document Ready` call on the `HTML` page is now its own real JavaScript function body. It's no longer *anonymous* because we need to call it from our AL page.
+
+It's not much of a transformation, though.
 
 ![widget](../../media/ControlAddInTranslations.png)
 
@@ -571,17 +531,15 @@ The content and file names of `custStyle.css` and `data.js` are exactly the same
 
 At least we don't have to change those. Yet.
 
-## We're not through
-
-There are some missing pieces. 
-
-Firstly, there's a file we haven't filled:
-
-
 ## Epilog
 
-We have a Control Add-in in Business Central. Admitedly, it doesn't do much and uses static data. But it attaches a custom widget that does work on data in a grid. That's something, isn't it?
+We now have a Control Add-in in Business Central. Admitedly, it's a different presentation of the standard BC List, and still uses static data. But we've shown a custom widget in an `iframe` and it works on the data we gave it. It performs all the requirements of the Standalone grid. That's something, isn't it?
 
 ![en](../../media/end%2002.png)
 
-We learned how the different parts of a standalone web page transform into the different (and sometimes new) places in Busienss Central objects. And we've learned a little bit about how Business Central manages to keep Control Add-ins isolated form even the other parts of the page (by putting them in an iframe).
+We learned how the different parts of a standalone web page transform into the different (and sometimes new) places in Busienss Central objects. And we've learned a little bit about how Business Central manages to keep Control Add-ins isolated from even the other parts of the page (by putting them in an iframe).
+
+## Next
+
+In the next and last module, we'll add some simple code to dynamically populate the grid data from the customers table. 
+

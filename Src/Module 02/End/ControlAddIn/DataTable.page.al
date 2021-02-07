@@ -1,7 +1,3 @@
-/// <summary>
-/// Page DataTable (ID 50100).
-/// Control Add-in Page
-/// </summary>
 page 50100 DataTable
 {
     PageType = Card;
@@ -23,22 +19,6 @@ page 50100 DataTable
                     SeedSite(_seed);
                     CurrPage.iTable.Render(_seed);
                     CurrPage.iTable.LinkWidget();
-                end;
-            }
-        }
-    }
-
-    actions
-    {
-        area(Processing)
-        {
-            action(ActionName)
-            {
-                ApplicationArea = All;
-
-                trigger OnAction()
-                begin
-
                 end;
             }
         }

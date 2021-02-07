@@ -1,6 +1,3 @@
-/// <summary>
-/// ControlAddIn iDataTable.
-/// </summary>
 controladdin iDataTable 
 {
     StartupScript = '.\ControlAddIn\startup.js';
@@ -27,6 +24,5 @@ controladdin iDataTable
     event ControlReady();
     procedure Render(HTLM: Text);
     procedure LinkWidget();
-
 
 }

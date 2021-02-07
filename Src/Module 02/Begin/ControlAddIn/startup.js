@@ -1,3 +1,3 @@
-HTMLContainer = document.getElementById("controlAddIn");
+var HTMLContainer = document.getElementById("controlAddIn");
 
 

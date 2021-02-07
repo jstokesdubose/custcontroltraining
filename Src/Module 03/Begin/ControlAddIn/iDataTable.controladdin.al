@@ -25,16 +25,7 @@ controladdin iDataTable
     MinimumWidth = 500;
 
     event ControlReady();
-    //event FillCustomerArray();
-
-    /// <summary>
-    /// Render.
-    /// </summary>
-    /// <param name="HTLM">Text.</param>
     procedure Render(HTLM: Text);
-    /// <summary>
-    /// LinkWidget.
-    /// </summary>
     procedure LinkWidget();
 
 
