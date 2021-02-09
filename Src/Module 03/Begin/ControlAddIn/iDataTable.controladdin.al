@@ -1,18 +1,15 @@
-/// <summary>
-/// ControlAddIn iDataTable.
-/// </summary>
 controladdin iDataTable 
 {
-    StartupScript = '.\CustomControl\startup.js';
+    StartupScript = '.\ControlAddIn\startup.js';
  
     StyleSheets = 'https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.css',
-                '.\CustomControl\custStyle.css';
+                '.\ControlAddIn\custStyle.css';
 
     scripts = 'https://code.jquery.com/jquery-3.3.1.js',
             'https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js',
             'https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.js',
-            '.\CustomControl\DataTable.js',
-            '.\CustomControl\data.js';
+            '.\ControlAddIn\DataTable.js',
+            '.\ControlAddIn\data.js';
 
 
     HorizontalStretch = true;
@@ -27,6 +24,5 @@ controladdin iDataTable
     event ControlReady();
     procedure Render(HTLM: Text);
     procedure LinkWidget();
-
 
 }

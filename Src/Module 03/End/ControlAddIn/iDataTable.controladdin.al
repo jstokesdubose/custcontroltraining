@@ -1,6 +1,3 @@
-/// <summary>
-/// ControlAddIn iDataTable.
-/// </summary>
 controladdin iDataTable
 {
     StartupScript = '.\ControlAddIn\startup.js';
